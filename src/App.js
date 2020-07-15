@@ -1,29 +1,38 @@
 import React, { Component } from 'react';
+import Projects from './Projects';
+import SocialProfiles from './SocialProfiles';
+
+import profile from './assets/profile.png';
 
 class App extends Component {
-    constructor() {
-        super();
+    state = { counter: 0, displayBio: false };
 
-        this.state = { counter: 0 };
-
-        this.addCounter = this.addCounter.bind(this);
-    }
-
-    addCounter() {
-        //this.state.counter = this.state.counter + 1;
-        this.setState({ counter: this.state.counter + 1 });
-        //console.log(this.state.counter);
+    toggleDisplayBio = () => {
+        this.setState({ displayBio: !this.state.displayBio })
     }
    
     render() {
         return (
              <div>
+                 <img src={profile} alt='Profile image' className='profile' />
                 <h1>Meu Portfolio</h1>
-                <p>Olá, meu nome é James!</p>
-                <p>Sou Desenvolvedor na empresa LINX S.A.</p>
-                <p>Este é o meu primeiro app de exemplo para o treinamento de react!</p>
-                <p>{ this.state.counter }</p>
-                <button onClick={this.addCounter}>Add Counter</button>
+                {
+                    this.state.displayBio ? (
+                        <div>
+                            <p>Olá, meu nome é James!</p>
+                            <p>Eu moro em Blumenau, sou Desenvolvedor na empresa LINX S.A.</p>
+                            <p>Este é o meu primeiro app de exemplo para o treinamento de react!</p>
+                            <button onClick={this.toggleDisplayBio}>Ver menos</button>
+                        </div>
+                    ) : (
+                        <div>
+                            <button onClick={this.toggleDisplayBio}>Ver mais</button>
+                        </div>
+                    )
+                }
+                <hr />        
+                <Projects />
+                <SocialProfiles />
             </div>
         )
     }
