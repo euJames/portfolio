@@ -1,14 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
 import App from './components/App';
+import Header from './components/Header';
+import Joke from './components/Jokes';
 
 import './index.css';
 
 ReactDOM.render(
-  <App/>
-  ,
+  <BrowserRouter>
+    <Switch>
+      <Route exact={true} path='/' render={() => <Header><App/></Header> }></Route>
+      <Route path='/jokes' render={() => <Header><Joke /></Header>}></Route>
+    </Switch>
+  </BrowserRouter>,
   document.getElementById('root')
 );
+
+//console.log("renderizou");
+
+// Promisse
+// Em um objeto promise, o parâmetro será uma função que receberá dois atributos (resolve, reject), onde:
+// resolve: será uma função que eu irei utilizar encadeando o método .then ao final da execução da minha promisse;
+// reject: caso ocorrer algum problema na execução da minha promisse, irei chamar essa função, que encaderará o método
+// .catch da minha promise.
+
+/* new Promise((resolve, reject) => {
+  setTimeout(() => {
+    console.log('ho');
+    resolve();
+  }, 2000)      
+}).then( () => {
+  console.log('ho 1');
+  console.log('ho 2');
+}).catch( () => {
+  console.log('erro!');
+}); */
+
 
 //componentDidMount
 //componentWillUnmount
